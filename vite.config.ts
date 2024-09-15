@@ -6,20 +6,15 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      // Entry point of your library
-      entry: 'src/main.tsx', // or 'src/index.jsx' depending on your setup
-      // Name of the global variable for UMD build
-      name: 'MyReactApp',
-      // Output formats: 'umd' for UMD module
-      formats: ['umd'],
-      // File name pattern
+      entry: './src/MyReactComponent.tsx', // Your main component
+      name: 'MyReactApp', // Global variable name when using UMD
+      formats: ['umd'], // Build format
       fileName: (format) => `my-react-app.${format}.js`,
     },
     rollupOptions: {
-      // External dependencies to exclude from the bundle
+      // Exclude dependencies from the bundle
       external: ['react', 'react-dom'],
       output: {
-        // Provide global variables for external dependencies in UMD build
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
