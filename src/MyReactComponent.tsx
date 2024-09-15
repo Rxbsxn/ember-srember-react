@@ -8,6 +8,10 @@ const MyReactComponent = forwardRef((props, ref) => {
 	const [count, setCount] = useState(0)
 	const updateCounterFromReact = (value = 1) => {
 		setCount((prevValue) => prevValue + value)
+
+    if (onEvent) {
+      onEvent('The current count value is: ', count);
+    }
 	}
 
   // Expose methods via ref
@@ -18,12 +22,6 @@ const MyReactComponent = forwardRef((props, ref) => {
     },
   }));
 
-  const handleClick = () => {
-    if (onEvent) {
-      onEvent('The current count value is: ', count);
-    }
-  };
-
   return (
     <div>
       <h1>React Application Embedded via Script</h1>
@@ -32,7 +30,6 @@ const MyReactComponent = forwardRef((props, ref) => {
 			<p>{count}</p>
 
 			<button onClick={() => updateCounterFromReact(1)}>Update Counter</button>
-      <button onClick={handleClick}>Send current counter value to Ember</button>
     </div>
   );
 });
