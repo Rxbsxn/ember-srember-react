@@ -20,7 +20,7 @@ const MyReactComponent = forwardRef((props, ref) => {
 
   const handleClick = () => {
     if (onEvent) {
-      onEvent('Data from React');
+      onEvent('The current count value is: ', count);
     }
   };
 
@@ -32,7 +32,7 @@ const MyReactComponent = forwardRef((props, ref) => {
 			<p>{count}</p>
 
 			<button onClick={() => updateCounterFromReact(1)}>Update Counter</button>
-      <button onClick={handleClick}>Send Data to Ember</button>
+      <button onClick={handleClick}>Send current counter value to Ember</button>
     </div>
   );
 });
