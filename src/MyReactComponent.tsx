@@ -26,8 +26,9 @@ const MyReactComponent = forwardRef((props, ref) => {
 
   return (
     <div>
-      <h2>React Application Embedded via Script</h2>
+      <h1>React Application Embedded via Script</h1>
       <p>{message}</p>
+			<h2>Counter:</h2>
 			<p>{count}</p>
 
 			<button onClick={updateCounterFromReact}>Update Counter</button>
