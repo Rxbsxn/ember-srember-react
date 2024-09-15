@@ -6,14 +6,14 @@ const MyReactComponent = forwardRef((props, ref) => {
   const { message, onEvent } = props;
 
 	const [count, setCount] = useState(0)
-	const updateCounterFromReact = () => {
-		setCount((prevValue) => prevValue + 1)
+	const updateCounterFromReact = (value = 0) => {
+		setCount((prevValue) => prevValue + 1 + value)
 	}
 
   // Expose methods via ref
   useImperativeHandle(ref, () => ({
     reactMethod(data) {
-      alert(`React method called with data: ${data}`);
+			updateCounterFromReact(data)
       // Additional logic...
     },
   }));
