@@ -1,21 +1,28 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/MyReactComponent.jsx
 // @ts-nocheck
-import React, { useState } from 'react';
+import React, { useImperativeHandle, forwardRef, useState } from 'react';
 
-const MyReactComponent = (props: any) => {
-	const [count, setCount] = useState(0)
+const MyReactComponent = forwardRef((props, ref) => {
   const { message, onEvent } = props;
+
+	const [count, setCount] = useState(0)
+	const updateCounterFromReact = () => {
+		setCount((prevValue) => prevValue + 1)
+	}
+
+  // Expose methods via ref
+  useImperativeHandle(ref, () => ({
+    reactMethod(data) {
+      alert(`React method called with data: ${data}`);
+      // Additional logic...
+    },
+  }));
 
   const handleClick = () => {
     if (onEvent) {
       onEvent('Data from React');
     }
   };
-
-	const updateCounterFromReact = () => {
-		setCount((prevValue) => prevValue + 1)
-	}
 
   return (
     <div>
@@ -27,6 +34,6 @@ const MyReactComponent = (props: any) => {
       <button onClick={handleClick}>Send Data to Ember</button>
     </div>
   );
-};
+});
 
 export default MyReactComponent;
