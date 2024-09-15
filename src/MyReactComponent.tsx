@@ -6,8 +6,8 @@ const MyReactComponent = forwardRef((props, ref) => {
   const { message, onEvent } = props;
 
 	const [count, setCount] = useState(0)
-	const updateCounterFromReact = (value = 0) => {
-		setCount((prevValue) => prevValue + 1 + value)
+	const updateCounterFromReact = (value = 1) => {
+		setCount((prevValue) => prevValue + value)
 	}
 
   // Expose methods via ref
